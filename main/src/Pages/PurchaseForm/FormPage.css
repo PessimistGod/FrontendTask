@@ -1,0 +1,44 @@
+
+  
+
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.1); 
+  }
+  
+
+  .card-body h2 {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+
+  .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .custom-slider {
+    width: 100%;
+    appearance: none;
+    background: linear-gradient(to right, #fafafa 0%, #626563 100%);
+    border-radius: 5px;
+    height: 10px;
+    cursor: pointer;
+  }
+  
+
+  
+  .custom-slider:focus {
+    outline: none;
+  }
+  
+
+  .selected-value {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
