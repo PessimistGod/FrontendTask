@@ -11,26 +11,17 @@ You can access my website by clicking on the following link:
 
 Here are some preview images of my website:
 
-1. Homepage:
-   ![Homepage](Images/Screenshot (65).png)
+(Images/Screenshot (65).png)
+(Images/Screenshot (66).png)
+(Images/Screenshot (67).png)
+(Images/Screenshot (68).png)
+(Images/Screenshot (69).png)
+(Images/Screenshot (70).png)
+(Images/Screenshot (72).png)
+(Images/Screenshot (73).png)
 
-2. About Page:
-   ![About Page](images/about.png)
 
-3. Portfolio:
-   ![Portfolio](images/portfolio.png)
 
-4. Contact Page:
-   ![Contact Page](images/contact.png)
-
-5. Blog Section:
-   ![Blog Section](images/blog.png)
-
-6. Testimonials:
-   ![Testimonials](images/testimonials.png)
-
-7. Footer:
-   ![Footer](images/footer.png)
 
 ## Description
 
