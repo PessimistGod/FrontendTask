@@ -14,8 +14,7 @@ const FormPage = () => {
   const [numberOfComments, setNumberOfComments] = useState(10);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const apiUrl = process.env.REACT_APP_API_BACKEND;
-  console.log(apiUrl)
+  const apiUrl = process.env.REACT_APP_API_BACKEND || 'https://frontend-task-orpin.vercel.app/';
   const handleSliderChange = (e) => {
     const value = parseInt(e.target.value, 10);
     const planIndex = Math.floor(value / 10);
