@@ -8,7 +8,7 @@ const app = express();
 
 
 const corsOptions = {
-    origin: 'https://frontend-task-main.vercel.app/',
+    origin: 'https://frontend-task-main.vercel.app',
   };
   
   app.use(cors(corsOptions));
@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
 
 const sentEmails = [];
 
-app.post('/api/user', (req, res) => {
+app.post('./api/user', (req, res) => {
     const formData = req.body;
 
 
