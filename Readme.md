@@ -25,8 +25,11 @@ Here are some preview images of my website:
 
 ## Description
 
-My website showcases my portfolio, blog, and contact information. It is designed to provide visitors with information about me and my work.
+This website is Made using React + Bootstrap
 
 ## How to Use
 
 1. Clone this repository to your local machine.
+2. Install Backend and React app 
+3. to Start use npm start in frontend
+4. to start use nodemon index.js in backend
