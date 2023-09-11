@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
 
 const sentEmails = [];
 
-app.post('./api/user', (req, res) => {
+app.post('/api/user', (req, res) => {
     const formData = req.body;
 
 
