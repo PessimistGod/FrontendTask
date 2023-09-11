@@ -8,7 +8,7 @@ const app = express();
 
 
 const corsOptions = {
-    origin: 'https://frontend-task-main.vercel.app',
+    origin: 'https://frontend-task-main.vercel.app/',
   };
   
   app.use(cors(corsOptions));
