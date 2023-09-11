@@ -6,6 +6,7 @@ import './FormPage.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const FormPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,68 +30,79 @@ const FormPage = () => {
     setNumberOfComments(10);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Basic email validation using RegExp
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      
-      if (name && email && emailPattern.test(email)) {
-        const formData = {
-          name: name,
-          email: email,
-          numberOfComments: numberOfComments
-        };
-
-        console.log(formData)
-
-        resetForm(); 
-
-        setTimeout(() => {
-          toast.success('Product Purchased!', {
-            position: "top-center",
-            autoClose: 500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }, 1000);
-     
-
-        navigate('/')
-      } else {
-        toast.error('Please Enter Valid Details', {
-          position: "top-center",
-          autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      }
-    } catch (err) {
-      console.error(err);
-    }
+  const toastOptions = {
+    position: 'top-center',
+    autoClose: 1000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
   };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+/;
+
+  if (!name) {
+    toast.error('Please enter your name', toastOptions);
+    return;
+  }
+
+  if (!email || !emailPattern.test(email)) {
+    toast.error('Please enter a valid email address', toastOptions);
+    return;
+  }
+
+  try {
+    const formData = {
+      firstname: name.toString(),
+      email: email.toString(),
+      message: numberOfComments.toString(),
+    };
+
+    const response = await fetch('http://localhost:4000/api/user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.status >= 200 && response.status < 300) {
+      resetForm();
+      setTimeout(() => {
+        toast.success('Product Purchased!', toastOptions);        
+      }, 400);
+      navigate('/');
+    } else if (response.status === 400) {
+      const responseData = await response.json();
+      toast.error(responseData.message, toastOptions);
+    } else {
+      toast.error('Form submission failed. Please try again later.', toastOptions);
+    }
+  } catch (err) {
+
+    console.error(err);
+    toast.error('An error occurred. Please try again later.', toastOptions);
+  }
+};
+  
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const planId = searchParams.get("planId");
-  
+
     const planIndex = planContents.findIndex((plan) => plan.header === planId);
-  
+
     if (planIndex >= 0) {
-      const initialNumberOfComments = (planIndex + 1) * 10; 
+      const initialNumberOfComments = (planIndex + 1) * 10;
       setNumberOfComments(initialNumberOfComments);
     }
   }, []);
-  
+
   return (
     <>
       <ToastContainer
@@ -141,7 +153,7 @@ const FormPage = () => {
                     <label htmlFor="numberOfComments">Order Comments</label>
                     <input
                       type="range"
-                      className="form-control-range custom-slider" 
+                      className="form-control-range custom-slider"
                       id="numberOfComments"
                       min="10"
                       max="30"
@@ -149,7 +161,7 @@ const FormPage = () => {
                       value={numberOfComments}
                       onChange={handleSliderChange}
                     />
-                    <p className="mt-2 selected-value">Selected: {numberOfComments} Comments</p> 
+                    <p className="mt-2 selected-value">Selected: {numberOfComments} Comments</p>
                   </div>
                   <div className="d-flex justify-content-center">
 

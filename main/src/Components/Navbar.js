@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -33,9 +34,7 @@ const Navbar = () => {
         >
           <ul className="navbar-nav ml-md-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/">
-                Features
-              </a>
+              <Link to={'/lazyLoading'} className='nav-link'>Lazy Loading...</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/">
