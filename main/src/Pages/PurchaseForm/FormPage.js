@@ -5,14 +5,17 @@ import { planContents } from "../Plans/PlansData";
 import './FormPage.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loading from "../../Components/Loading";
 
 
 const FormPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [numberOfComments, setNumberOfComments] = useState(10);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-
+  const apiUrl = process.env.REACT_APP_API_BACKEND;
+  console.log(apiUrl)
   const handleSliderChange = (e) => {
     const value = parseInt(e.target.value, 10);
     const planIndex = Math.floor(value / 10);
@@ -44,6 +47,7 @@ const FormPage = () => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
+  setIsLoading(true)
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+/;
 
   if (!name) {
@@ -63,14 +67,14 @@ const handleSubmit = async (e) => {
       message: numberOfComments.toString(),
     };
 
-    const response = await fetch('http://localhost:4000/api/user', {
+    const response = await fetch(`${apiUrl}/api/user`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
     });
-
+    setIsLoading(false)
     if (response.status >= 200 && response.status < 300) {
       resetForm();
       setTimeout(() => {
@@ -79,13 +83,16 @@ const handleSubmit = async (e) => {
       navigate('/');
     } else if (response.status === 400) {
       const responseData = await response.json();
+      setIsLoading(false)
       toast.error(responseData.message, toastOptions);
     } else {
+      setIsLoading(false)
       toast.error('Form submission failed. Please try again later.', toastOptions);
     }
   } catch (err) {
 
     console.error(err);
+    setIsLoading(false)
     toast.error('An error occurred. Please try again later.', toastOptions);
   }
 };
@@ -101,6 +108,10 @@ const handleSubmit = async (e) => {
       const initialNumberOfComments = (planIndex + 1) * 10;
       setNumberOfComments(initialNumberOfComments);
     }
+
+    setTimeout(() => {
+      setIsLoading(false); 
+    }, 1500);
   }, []);
 
   return (
@@ -119,6 +130,9 @@ const handleSubmit = async (e) => {
       />
 
       <div className="container mt-5 vh-100">
+      {isLoading ? (
+          <Loading /> 
+        ) : (
         <div className="row justify-content-around">
           <div className="col-md-4">
             <CardCarousel numberOfComments={numberOfComments} />
@@ -175,6 +189,7 @@ const handleSubmit = async (e) => {
           </div>
 
         </div>
+        )}
       </div>
     </>
   );
