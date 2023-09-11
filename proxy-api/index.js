@@ -6,7 +6,14 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(cors());
+
+const corsOptions = {
+    origin: 'https://frontend-task-main.vercel.app',
+  };
+  
+  app.use(cors(corsOptions));
+
+  
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
@@ -31,7 +38,7 @@ app.post('/api/user', (req, res) => {
     request.get({
         url: process.env.GET_API_URL,
         headers: {
-            'Code': process.env.GET_API_ACCESS_CODE, // Include the access code in the header
+            'Code': process.env.GET_API_ACCESS_CODE, 
         },
     }, (requestError, response, body) => {
         if (requestError) {
