@@ -31,5 +31,5 @@ This website is Made using React + Bootstrap
 
 1. Clone this repository to your local machine.
 2. Install Backend and React app 
-3. to Start use npm start in frontend
-4. to start use nodemon index.js in backend
+3. To Start use npm start in frontend
+4. To start use nodemon index.js in backend
