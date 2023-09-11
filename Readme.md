@@ -11,14 +11,14 @@ You can access my website by clicking on the following link:
 
 Here are some preview images of my website:
 
-(Images/Screenshot (65).png)
-(Images/Screenshot (66).png)
-(Images/Screenshot (67).png)
-(Images/Screenshot (68).png)
-(Images/Screenshot (69).png)
-(Images/Screenshot (70).png)
-(Images/Screenshot (72).png)
-(Images/Screenshot (73).png)
+(Images/Screenshot%20(65).png)
+(Images/Screenshot%20(66).png)
+(Images/Screenshot%20(67).png)
+(Images/Screenshot%20(68).png)
+(Images/Screenshot%20(69).png)
+(Images/Screenshot%20(70).png)
+(Images/Screenshot%20(72).png)
+(Images/Screenshot%20(73).png)
 
 
 
